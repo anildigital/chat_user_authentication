@@ -3,6 +3,8 @@ defmodule Chat.Users do
 
   alias Chat.Repo
 
+  def new(), do: Ecto.Changeset.change(%User{}, %{})
+
   def create(params) do
     changeset = User.create_changeset(%User{}, params)
 
