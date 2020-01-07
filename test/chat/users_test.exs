@@ -21,19 +21,18 @@ defmodule Chat.UsersTest do
     end
   end
 
-  describe "Updating users" do
+  describe "updating users" do
     test "change basic info" do
       {:ok, user} = TestHelpers.create_user()
 
       {:ok, user} =
         Users.update(user, %{
           first_name: "Updated",
-          last_name: "Last name"
+          last_name: "LastName"
         })
 
       assert user.first_name == "Updated"
-
-      assert user.last_name == "Last name"
+      assert user.last_name == "LastName"
     end
   end
 end
