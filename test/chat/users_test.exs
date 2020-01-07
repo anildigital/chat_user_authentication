@@ -21,7 +21,7 @@ defmodule Chat.UsersTest do
     end
   end
 
-  describe "updating users" do
+  describe "Updating users" do
     test "change basic info" do
       {:ok, user} = TestHelpers.create_user()
 
