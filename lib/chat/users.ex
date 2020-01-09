@@ -5,6 +5,8 @@ defmodule Chat.Users do
 
   alias Stein.Accounts
 
+  def new(), do: Ecto.Changeset.change(%User{}, %{})
+
   def create(params) do
     changeset = User.create_changeset(%User{}, params)
 
