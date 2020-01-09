@@ -36,4 +36,11 @@ defmodule Chat.Users.User do
     |> validate_required([:email, :first_name, :last_name, :password_hash])
     |> unique_constraint(:email, name: :users_lower_email_index)
   end
+
+  def update_changeset(struct, params) do
+    struct
+    |> cast(params, [:email, :first_name, :last_name])
+    |> validate_required([:email, :first_name, :last_name])
+    |> unique_constraint(:email, name: :users_lower_email_index)
+  end
 end

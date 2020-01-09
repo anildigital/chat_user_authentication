@@ -3,6 +3,8 @@ defmodule Chat.Users do
 
   alias Chat.Repo
 
+  alias Stein.Accounts
+
   def create(params) do
     changeset = User.create_changeset(%User{}, params)
 
@@ -17,5 +19,31 @@ defmodule Chat.Users do
       {:error, changeset} ->
         {:error, changeset}
     end
+  end
+
+  def from_token(token) do
+    case Repo.get_by(User, token: token) do
+      nil ->
+        {:error, :not_found}
+
+      user ->
+        {:ok, user}
+    end
+  end
+
+  def update(user, params) do
+    changeset = User.update_changeset(user, params)
+
+    case Repo.update(changeset) do
+      {:ok, user} ->
+        {:ok, user}
+
+      {:error, changeset} ->
+        {:error, changeset}
+    end
+  end
+
+  def validate_login(email, password) do
+    Accounts.validate_login(Repo, User, email, password)
   end
 end
